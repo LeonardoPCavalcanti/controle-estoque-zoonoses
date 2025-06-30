@@ -1,63 +1,44 @@
-# 🦠 Sistema de Controle de Estoque para Zoonoses
+# 🧪 Controle de Estoque - Zoonoses
 
-Este repositório centraliza os subprojetos do sistema de controle de estoque para zoonoses, facilitando a configuração e execução com Docker.
+Este repositório contém a infraestrutura principal do sistema de controle de estoque para instituições de zoonoses. Ele orquestra os serviços de frontend, backend e banco de dados utilizando Docker Compose.
 
-## 📦 Subprojetos
+## 📁 Estrutura do Projeto
 
-- 🔙 **Backend (API)**  
-  Repositório: [controle-estoque-zoonoses-api](https://github.com/SEU_USUARIO/controle-estoque-zoonoses-api)
+- `controle-estoque-zoonoses-frontend/` → Aplicação React (interface do usuário)
+- `controle-estoque-zoonoses-api/` → API Node.js com Express e Sequelize
+- `docker-compose.yml` → Orquestração dos serviços
 
-- 🎨 **Frontend (Interface Web)**  
-  Repositório: [controle-estoque-zoonoses-frontend](https://github.com/SEU_USUARIO/controle-estoque-zoonoses-frontend)
+## 🚀 Executando o projeto
 
-> ⚠️ Substitua `SEU_USUARIO` acima pelo seu nome de usuário do GitHub.
+### Pré-requisitos
 
----
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-## 🚀 Executando com Docker Compose
+### Passos
 
-### 1. Clone os repositórios
-
+1. Clone o repositório:
 ```bash
-git clone https://github.com/SEU_USUARIO/controle-estoque-zoonoses-api.git
-git clone https://github.com/SEU_USUARIO/controle-estoque-zoonoses-frontend.git
+git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses.git
+cd controle-estoque-zoonoses
 ```
 
-> Coloque ambos os diretórios clonados na **mesma pasta deste repositório**, para que o Docker Compose funcione corretamente.
-
-### 2. Execute o sistema
-
+2. Suba os serviços:
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
----
+3. Acesse os sistemas:
 
-## ⚙️ Serviços
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend (API): [http://localhost:3001](http://localhost:3001)
 
-- `backend` → Porta 3001
-- `frontend` → Porta 3000
-- `db` (PostgreSQL) → Porta 5432
+## 🗃 Banco de Dados
 
----
+O serviço `db` utiliza PostgreSQL com os seguintes dados:
 
-## 🧪 Tecnologias
+- DB: `zoonoses_estoque`
+- User: `postgres`
+- Senha: `postgres`
 
-- TypeScript
-- Node.js / Express
-- React / Vite
-- PostgreSQL
-- Docker e Docker Compose
-
----
-
-## 📂 Estrutura esperada
-
-```
-controle-estoque-zoonoses/
-├── docker-compose.yml
-├── controle-estoque-zoonoses-api/
-└── controle-estoque-zoonoses-frontend/
-```
-
----
+> As configurações estão no arquivo `.env` e no `docker-compose.yml`.
