@@ -17,20 +17,20 @@ services:
   backend:
     build:
       context: ./controle-estoque-zoonoses-api
-    container_name: backend-zoonoses
+    container_name: backend
     ports:
       - "3001:3001"
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/zoonoses_estoque
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/zoonoses_estoque
     volumes:
       - ./controle-estoque-zoonoses-api:/app
 
   frontend:
     build:
       context: ./controle-estoque-zoonoses-frontend
-    container_name: frontend-zoonoses
+    container_name: frontend
     ports:
       - "3000:3000"
     depends_on:
