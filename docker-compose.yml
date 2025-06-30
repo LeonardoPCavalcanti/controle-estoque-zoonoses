@@ -1,52 +1,42 @@
-version: '3.9'
+version: "3.9"
 
 services:
-  backend:
-    build: ./backend
-    container_name: backend_zoonoses
-    ports:
-      - "3333:3333"
-    depends_on:
-      - db
-    environment:
-      - DB_NAME=zoonoses_estoque
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_HOST=db
-      - DB_PORT=5432
-      - SECRET=Zoonoses_Super_Secret_Key
-    volumes:
-      - ./backend:/app
-    networks:
-      - app-network
-
-  frontend:
-    build: ./frontend
-    container_name: frontend_zoonoses
-    ports:
-      - "5173:80" # 5173 na sua máquina → 80 no container NGINX
-    depends_on:
-      - backend
-    networks:
-      - app-network
-
   db:
     image: postgres:15
-    container_name: db_zoonoses
-    ports:
-      - "5432:5432"
+    restart: always
+    container_name: postgres-db
     environment:
       POSTGRES_DB: zoonoses_estoque
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    networks:
-      - app-network
+
+  backend:
+    build:
+      context: ./controle-estoque-zoonoses-api
+    container_name: backend-zoonoses
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/zoonoses_estoque
+    volumes:
+      - ./controle-estoque-zoonoses-api:/app
+
+  frontend:
+    build:
+      context: ./controle-estoque-zoonoses-frontend
+    container_name: frontend-zoonoses
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./controle-estoque-zoonoses-frontend:/app
 
 volumes:
   postgres-data:
-
-networks:
-  app-network:
-    driver: bridge
