@@ -32,7 +32,7 @@ services:
       context: ./controle-estoque-zoonoses-frontend
     container_name: frontend
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - backend
     volumes:
