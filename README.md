@@ -36,11 +36,16 @@ Antes de começar, certifique-se de que você tem as seguintes ferramentas insta
 
 **1. Clonar o Repositório**
 
-Primeiro, clone o projeto do GitHub para a sua máquina local.
+Primeiro, clone o projeto do GitHub para a sua máquina local utilizando esse comando completo abaixo.
 
 ```bash
 git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses.git
+
 cd controle-estoque-zoonoses
+
+git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-api controle-estoque-zoonoses-api    
+
+git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-frontend controle-estoque-zoonoses-frontend
 ```
 
 **2. Subir os Contêineres com Docker Compose**
