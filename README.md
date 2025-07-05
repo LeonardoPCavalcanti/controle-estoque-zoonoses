@@ -64,6 +64,7 @@ Após o comando terminar e os logs se estabilizarem, a aplicação estará no ar
 Para parar todos os serviços, basta pressionar `Ctrl + C` no terminal onde o `docker compose` está rodando.
 
 💡 Dica
+
 Para abrir o projeto diretamente no Visual Studio Code e visualizar todos os arquivos no explorador, navegue até a pasta raiz do projeto (controle-estoque-zoonoses) no seu terminal e execute o seguinte comando:
 
 ```bash
