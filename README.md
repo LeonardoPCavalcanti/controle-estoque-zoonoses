@@ -10,13 +10,13 @@ A aplicação é totalmente containerizada usando Docker, o que garante um ambie
 
 Este projeto é uma aplicação full-stack que utiliza um conjunto de tecnologias modernas para garantir performance e escalabilidade:
 
--   **Frontend:** [React](https://reactjs.org/)
--   **Backend:** [Node.js](https://nodejs.org/) com [Express](https://expressjs.com/)
--   **Banco de Dados:** [PostgreSQL](https://www.postgresql.org/)
--   **ORM:** [Sequelize](https://sequelize.org/) para a comunicação com o banco de dados.
--   **Containerização:** [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/)
--   **Testes:** [Jest](https://jestjs.io/)
--   **CI/CD:** [GitHub Actions](https://github.com/features/actions)
+- **Frontend:** [React](https://reactjs.org/)
+- **Backend:** [Node.js](https://nodejs.org/) com [Express](https://expressjs.com/)
+- **Banco de Dados:** [PostgreSQL](https://www.postgresql.org/)
+- **ORM:** [Sequelize](https://sequelize.org/) para a comunicação com o banco de dados.
+- **Containerização:** [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/)
+- **Testes:** [Jest](https://jestjs.io/)
+- **CI/CD:** [GitHub Actions](https://github.com/features/actions)
 
 ---
 
@@ -28,44 +28,59 @@ Siga estes passos para configurar e rodar o projeto completo no seu notebook.
 
 Antes de começar, certifique-se de que você tem as seguintes ferramentas instaladas na sua máquina:
 
--   [Git](https://git-scm.com/)
--   [Docker](https://www.docker.com/products/docker-desktop/)
--   [Docker Compose](https://docs.docker.com/compose/install/) (geralmente já vem com o Docker Desktop)
+- [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/products/docker-desktop/)
+- [Docker Compose](https://docs.docker.com/compose/install/) (geralmente já vem com o Docker Desktop)
 
 ### Passo a Passo
 
 **1. Clonar o Repositório**
 
-Primeiro, clone o projeto do GitHub para a sua máquina local.
-
 ```bash
 git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses.git
+
 cd controle-estoque-zoonoses
+
+git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-api controle-estoque-zoonoses-api
+
+git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-frontend controle-estoque-zoonoses-frontend
 ```
 
-**2. Subir os Contêineres com Docker Compose**
+**2. Criar banco de testes (necessário para execução dos testes)**
 
-Use o Docker Compose para construir as imagens e iniciar todos os serviços.
+Abra o **PgAdmin** ou utilize outro gerenciador de banco PostgreSQL e crie um banco com o seguinte nome:
+
+```text
+zoonoses_test_db
+```
+
+Esse banco será utilizado especificamente para os testes automatizados.
+
+**3. Subir os Contêineres com Docker Compose**
 
 ```bash
 docker compose up --build
 ```
 
--   O comando `--build` força o Docker a reconstruir as imagens caso haja alguma alteração nos `Dockerfiles`.
--   Este processo pode demorar alguns minutos na primeira vez.
+Esse comando inicializa:
 
-**3. Acessar a Aplicação**
+- PostgreSQL na porta 5432.
+- Backend na porta 3001.
+- Frontend na porta 3000.
 
-Após o comando terminar e os logs se estabilizarem, a aplicação estará no ar!
+**4. Acessar a Aplicação**
 
--   🔗 **Frontend (Interface do Usuário):** Acesse [http://localhost:3000](http://localhost:3000)
--   🔗 **Backend (API):** A API estará disponível em [http://localhost:3001](http://localhost:3001)
+- 🔗 **Frontend:** [http://localhost:3000](http://localhost:3000)
+- 🔗 **Backend:** [http://localhost:3001](http://localhost:3001)
 
-Para parar todos os serviços, basta pressionar `Ctrl + C` no terminal onde o `docker compose` está rodando.
+Para parar todos os serviços:
 
-💡 Dica
+```bash
+Ctrl + C
+```
 
-Para abrir o projeto diretamente no Visual Studio Code e visualizar todos os arquivos no explorador, navegue até a pasta raiz do projeto (controle-estoque-zoonoses) no seu terminal e execute o seguinte comando:
+💡 **Dica:**  
+Para abrir o projeto no VS Code:
 
 ```bash
 code .
@@ -75,21 +90,44 @@ code .
 
 ## 🧪 Rodando os Testes
 
-A API possui uma suíte de testes de integração e unidade. Para executá-los, você precisará do [Node.js](https://nodejs.org/) instalado na sua máquina.
+1. Acesse a pasta da API:
 
-1.  Navegue para a pasta da API:
-    ```bash
-    cd controle-estoque-zoonoses-api
-    ```
+```bash
+cd controle-estoque-zoonoses-api
+```
 
-2.  Instale as dependências de desenvolvimento:
-    ```bash
-    npm install
-    ```
+2. Instale as dependências:
 
-3.  Execute os testes:
-    ```bash
-    npm test
-    ```
+```bash
+npm install
+```
+
+3. Execute os testes:
+
+```bash
+npm test
+```
 
 ---
+
+## 💻 Rodando o Frontend isoladamente
+
+Se quiser rodar o frontend separadamente do Docker:
+
+1. Vá até a pasta:
+
+```bash
+cd controle-estoque-zoonoses-frontend
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Execute a aplicação:
+
+```bash
+npm run dev
+```
