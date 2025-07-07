@@ -36,15 +36,29 @@ Antes de começar, certifique-se de que você tem as seguintes ferramentas insta
 
 **1. Clonar o Repositório**
 
-Primeiro, clone o projeto do GitHub para a sua máquina local.
+Primeiro, clone o projeto do GitHub para a sua máquina local utilizando esse comando completo abaixo.
 
 ```bash
 git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses.git
 
 cd controle-estoque-zoonoses
+
+git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-api controle-estoque-zoonoses-api
+
+git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-frontend controle-estoque-zoonoses-frontend
 ```
 
-**2. Subir os Contêineres com Docker Compose**
+**2. Criar banco de testes no pgAdmin**
+
+No pgAdmin ou outro cliente PostgreSQL, crie manualmente um banco chamado:
+
+```
+zoonoses_test_db
+```
+
+Esse banco será utilizado para rodar os testes da API.
+
+**3. Subir os Contêineres com Docker Compose**
 
 Use o Docker Compose para construir as imagens e iniciar todos os serviços.
 
@@ -52,25 +66,21 @@ Use o Docker Compose para construir as imagens e iniciar todos os serviços.
 docker compose up --build
 ```
 
-Esse comando inicializa:
-
-- PostgreSQL na porta 5432.
-- Backend na porta 3001.
-- Frontend na porta 3000.
+- O comando `--build` força o Docker a reconstruir as imagens caso haja alguma alteração nos `Dockerfiles`.
+- Este processo pode demorar alguns minutos na primeira vez.
 
 **4. Acessar a Aplicação**
 
-- 🔗 **Frontend:** [http://localhost:3000](http://localhost:3000)
-- 🔗 **Backend:** [http://localhost:3001](http://localhost:3001)
+Após o comando terminar e os logs se estabilizarem, a aplicação estará no ar!
 
-Para parar todos os serviços:
+- 🔗 **Frontend (Interface do Usuário):** Acesse [http://localhost:3000](http://localhost:3000)
+- 🔗 **Backend (API):** A API estará disponível em [http://localhost:3001](http://localhost:3001)
 
-```bash
-Ctrl + C
-```
+Para parar todos os serviços, basta pressionar `Ctrl + C` no terminal onde o `docker compose` está rodando.
 
-💡 **Dica:**  
-Para abrir o projeto no VS Code:
+💡 Dica
+
+Para abrir o projeto diretamente no Visual Studio Code e visualizar todos os arquivos no explorador, navegue até a pasta raiz do projeto (controle-estoque-zoonoses) no seu terminal e execute o seguinte comando:
 
 ```bash
 code .
@@ -80,44 +90,40 @@ code .
 
 ## 🧪 Rodando os Testes
 
-1. Acesse a pasta da API:
+A API possui uma suíte de testes de integração e unidade. Para executá-los, você precisará do [Node.js](https://nodejs.org/) instalado na sua máquina.
 
-```bash
-cd controle-estoque-zoonoses-api
-```
+1. Navegue para a pasta da API:
+    ```bash
+    cd controle-estoque-zoonoses-api
+    ```
 
-2. Instale as dependências:
-
-```bash
-npm install
-```
+2. Instale as dependências de desenvolvimento:
+    ```bash
+    npm install
+    ```
 
 3. Execute os testes:
-
-```bash
-npm test
-```
+    ```bash
+    npm test
+    ```
 
 ---
 
-## 💻 Rodando o Frontend isoladamente
+## ▶️ Rodando o Frontend
 
-Se quiser rodar o frontend separadamente do Docker:
-
-1. Vá até a pasta:
-
-```bash
-cd controle-estoque-zoonoses-frontend
-```
+1. Navegue até a pasta do frontend:
+    ```bash
+    cd controle-estoque-zoonoses-frontend
+    ```
 
 2. Instale as dependências:
+    ```bash
+    npm install
+    ```
 
-```bash
-npm install
-```
+3. Rode o projeto:
+    ```bash
+    npm run dev
+    ```
 
-3. Execute a aplicação:
-
-```bash
-npm run dev
-```
+O frontend estará disponível em [http://localhost:3000](http://localhost:3000).
