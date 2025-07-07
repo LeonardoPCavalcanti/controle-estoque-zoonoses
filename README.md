@@ -36,27 +36,17 @@ Antes de começar, certifique-se de que você tem as seguintes ferramentas insta
 
 **1. Clonar o Repositório**
 
+Primeiro, clone o projeto do GitHub para a sua máquina local.
+
 ```bash
 git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses.git
 
 cd controle-estoque-zoonoses
-
-git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-api controle-estoque-zoonoses-api
-
-git clone https://github.com/LeonardoPCavalcanti/controle-estoque-zoonoses-frontend controle-estoque-zoonoses-frontend
 ```
 
-**2. Criar banco de testes (necessário para execução dos testes)**
+**2. Subir os Contêineres com Docker Compose**
 
-Abra o **PgAdmin** ou utilize outro gerenciador de banco PostgreSQL e crie um banco com o seguinte nome:
-
-```text
-zoonoses_test_db
-```
-
-Esse banco será utilizado especificamente para os testes automatizados.
-
-**3. Subir os Contêineres com Docker Compose**
+Use o Docker Compose para construir as imagens e iniciar todos os serviços.
 
 ```bash
 docker compose up --build
